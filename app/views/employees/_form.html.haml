@@ -1,0 +1,73 @@
+= form_for @employee do |form|
+	.info
+		.field_with_errors
+			= form.label :name
+			= form.text_field :name, placeholder: "Your Name"
+		.field_with_errors
+			= form.label :age
+			= form.text_field :age, placeholder: "Your Age"
+		%div
+			= form.label :sex
+			= form.select :sex, options_for_select(["Male", "Female"], @employee.sex), {}, { class: 'abcd'}
+		.field_with_errors
+			= form.label :phone_no
+			= form.text_field :phone_no, placeholder: "Mobile no."
+
+	<h1>Address:</h1>
+	= form.fields_for :addresses do |f|
+		.add_info
+			%div
+				= form.label :street
+				= f.text_field :street, placeholder: "HouseNo./Block/Sector"
+			%div
+				= form.label :city
+				= f.text_field :city, placeholder: "City"
+			%div
+				= form.label :state
+				= f.text_field :state
+			%div
+				= form.label :pincode
+				= f.text_field :pincode
+			%div
+				= form.label :country
+				= f.text_field :country
+
+	<h1>Other Details</h1>
+	= form.fields_for :employee_detail do |d|
+		.emp_info
+			%div
+				= form.label :designation
+				= d.text_field :designation
+			%div
+				= form.label :hobbies
+				= d.text_area :hobbies,  class: 'abcd'
+			%div
+				= form.label :experience
+				= d.text_field :experience_of_years, placeholder: "In Years"
+			%div
+				= form.label :marital_status
+				= d.select :marital_status, options_for_select(["Married", "Single"], d.object.marital_status), {}, { class: 'abcd'}
+			%div
+				= form.label :joining_date
+				= d.text_field :joining_date, placeholder: "YYYY-MM-DD"
+			%div
+				= form.label :email_id
+				= d.text_field :email_id
+
+	<h1>Account Details</h1>
+	=form.fields_for :account_details do |a|
+		.acc_info
+			%div
+				= form.label :account_id
+				= a.text_field :account_id
+			%div
+				= form.label :status
+				= a.select :status,  options_for_select([['Inactive', false], ['Active', true]], a.object.status), {}, { class: 'abcd'}
+			%div
+				= form.label :bank
+				= a.text_field :bank_name
+			%div
+				= form.label :account_type
+				= a.select :account_type,  options_for_select(["Current", "Savings", "Personal"], a.object.account_type), {}, { class: 'abcd'}
+	.submit
+		= form.submit "submit"

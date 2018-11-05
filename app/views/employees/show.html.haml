@@ -1,0 +1,90 @@
+.show
+	%div
+		%strong Employee_id:
+		= @employee.id
+
+	%div
+		%strong Name:
+		= @employee.name
+
+	%div
+		%strong Age:
+		= @employee.age
+
+	%div
+		%strong Sex:
+		= @employee.sex
+
+	%div
+		%strong Phone_no:
+		= @employee.phone_no
+
+	%h2 Addresses
+	-if @employee.addresses.any?
+		-@employee.addresses.each do |f|
+
+			%div
+			%strong Street:
+			= f.street
+
+			%div
+			%strong City:
+			= f.city
+
+			%div
+			%strong State:
+			= f.state
+
+			%div
+			%strong Pincode:
+			= f.pincode
+
+			%div
+			%strong Country:
+			= f.country
+
+	%h2 Other Details
+	-if @employee.employee_detail.present?
+		%div
+			%strong Designation:
+			=  @employee.employee_detail.designation
+
+			%div
+			%strong Hobbies:
+			=  @employee.employee_detail.hobbies
+
+			%div
+			%strong E.O.Y:
+			=  @employee.employee_detail.experience_of_years
+
+			%div
+			%strong Marital Status:
+			=  @employee.employee_detail.marital_status
+
+			%div
+			%strong Joining date:
+			=  @employee.employee_detail.joining_date
+
+			%div
+			%strong Email:
+			=  @employee.employee_detail.email_id
+		%h2 Account Details
+		-if @employee.account_details.any?
+			-@employee.account_details.each do |a|
+				%div
+				%strong Account_id:
+				= a.account_id
+
+				%div
+				%strong Account Status:
+				= a.status_value
+
+				%div
+				%strong Bank Name:
+				= a.bank_name
+
+				%div
+				%strong Account Type:
+				= a.account_type
+		%div		
+		= link_to "Back",employees_path

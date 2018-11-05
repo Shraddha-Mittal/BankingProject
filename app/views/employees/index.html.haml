@@ -1,0 +1,16 @@
+%h1 Employee Details
+
+%table{:border => 1}
+  %tr
+    %th Employee_id
+    %th Name
+    %th{Colspan: 3}> Action
+
+
+  - @employee.each do |e|
+    %tr
+    %td= e.id
+    %td= e.name
+    %td= link_to 'Show',   employee_path(e)
+    %td= link_to 'Edit', edit_employee_path(e)
+    %td= link_to 'Destroy',  employee_path(e), method: :delete, data: {confirm: 'Are you sure'}
